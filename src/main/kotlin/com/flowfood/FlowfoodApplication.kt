@@ -9,4 +9,3 @@ class FlowfoodApplication
 fun main(args: Array<String>) {
 	runApplication<FlowfoodApplication>(*args)
 }
-cd
