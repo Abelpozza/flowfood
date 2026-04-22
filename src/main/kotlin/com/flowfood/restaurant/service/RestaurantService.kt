@@ -15,8 +15,8 @@ class RestaurantService(
         val restaurant = Restaurant(
             name = dto.name,
             description = dto.description,
-            deliveryFee = dto.deliveryFee,
-            open = dto.open
+            deliveryFee = dto.deliveryFee!!,
+            open = dto.open!!
         )
 
         val savedRestaurant = restaurantRepository.save(restaurant)
