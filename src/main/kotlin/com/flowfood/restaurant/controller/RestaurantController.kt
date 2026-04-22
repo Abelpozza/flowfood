@@ -28,4 +28,16 @@ class RestaurantController(
     fun findById(@PathVariable id: Long): RestaurantResponseDTO {
         return restaurantService.findById(id)
     }
+    @PutMapping("/{id}")
+    fun update(
+        @PathVariable id: Long,
+        @RequestBody @Valid dto: RestaurantRequestDTO): RestaurantResponseDTO {
+        return restaurantService.update(id, dto)
+    }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    fun delete(@PathVariable id: Long) {
+        restaurantService.delete(id)
+    }
 }
