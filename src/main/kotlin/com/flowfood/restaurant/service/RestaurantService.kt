@@ -5,6 +5,7 @@ import com.flowfood.restaurant.dto.RestaurantResponseDTO
 import com.flowfood.restaurant.entity.Restaurant
 import com.flowfood.restaurant.repository.RestaurantRepository
 import org.springframework.stereotype.Service
+import com.flowfood.exception.ResourceNotFoundException
 
 @Service
 class RestaurantService(
@@ -51,7 +52,7 @@ class RestaurantService(
 
     fun delete(id: Long) {
         val restaurant = restaurantRepository.findById(id)
-            .orElseThrow { RuntimeException("Restaurante não encontrado") }
+            .orElseThrow { ResourceNotFoundException("Restaurante não encontrado com id: $id") }
 
         restaurantRepository.delete(restaurant)
     }
