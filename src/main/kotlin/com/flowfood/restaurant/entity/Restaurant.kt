@@ -1,10 +1,12 @@
 package com.flowfood.restaurant.entity
 
+import com.flowfood.product.entity.Product
 import jakarta.persistence.Column
 import jakarta.persistence.Entity
 import jakarta.persistence.GeneratedValue
 import jakarta.persistence.GenerationType
 import jakarta.persistence.Id
+import jakarta.persistence.OneToMany
 import jakarta.persistence.Table
 
 @Entity
@@ -26,3 +28,7 @@ data class Restaurant(
     @Column(nullable = false)
     val open: Boolean = true
 )
+
+@OneToMany(mappedBy = "restaurant")
+val products: List<Product> = emptyList()
+
