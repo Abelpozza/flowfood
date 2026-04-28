@@ -1,11 +1,11 @@
 package com.flowfood.restaurant.service
 
+import com.flowfood.exception.ResourceNotFoundException
 import com.flowfood.restaurant.dto.RestaurantRequestDTO
 import com.flowfood.restaurant.dto.RestaurantResponseDTO
 import com.flowfood.restaurant.entity.Restaurant
 import com.flowfood.restaurant.repository.RestaurantRepository
 import org.springframework.stereotype.Service
-import com.flowfood.exception.ResourceNotFoundException
 
 @Service
 class RestaurantService(
@@ -21,25 +21,28 @@ class RestaurantService(
         )
 
         val savedRestaurant = restaurantRepository.save(restaurant)
+
         return toResponse(savedRestaurant)
     }
 
     fun findAll(): List<RestaurantResponseDTO> {
-        return restaurantRepository.findAll().map { toResponse(it) }
+        return restaurantRepository.findAll()
+            .map { toResponse(it) }
     }
 
     fun findById(id: Long): RestaurantResponseDTO {
         val restaurant = restaurantRepository.findById(id)
-            .orElseThrow { RuntimeException("Restaurante não encontrado") }
+            .orElseThrow {
+                ResourceNotFoundException("Restaurante não encontrado com id: $id")
+            }
 
         return toResponse(restaurant)
     }
 
     fun update(id: Long, dto: RestaurantRequestDTO): RestaurantResponseDTO {
-        val restaurant = restaurantRepository.findById(id)
-            .orElseThrow { RuntimeException("Restaurante não encontrado") }
+        val existingRestaurant = findRestaurantOrThrow(id)
 
-        val updatedRestaurant = restaurant.copy(
+        val updatedRestaurant = existingRestaurant.copy(
             name = dto.name,
             description = dto.description,
             deliveryFee = dto.deliveryFee!!,
@@ -47,14 +50,20 @@ class RestaurantService(
         )
 
         val savedRestaurant = restaurantRepository.save(updatedRestaurant)
+
         return toResponse(savedRestaurant)
     }
 
     fun delete(id: Long) {
-        val restaurant = restaurantRepository.findById(id)
-            .orElseThrow { ResourceNotFoundException("Restaurante não encontrado com id: $id") }
-
+        val restaurant = findRestaurantOrThrow(id)
         restaurantRepository.delete(restaurant)
+    }
+
+    private fun findRestaurantOrThrow(id: Long): Restaurant {
+        return restaurantRepository.findById(id)
+            .orElseThrow {
+                ResourceNotFoundException("Restaurante não encontrado com id: $id")
+            }
     }
 
     private fun toResponse(restaurant: Restaurant): RestaurantResponseDTO {

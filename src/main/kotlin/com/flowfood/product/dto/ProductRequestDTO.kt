@@ -17,5 +17,5 @@ data class ProductRequestDTO(
     val price: Double?,
 
     @field:NotNull(message = "O restaurante é obrigatório!")
-    val restaurantID: Long?
+    val restaurantId: Long?
 )
