@@ -1,10 +1,10 @@
-package com.flowfood.product.service
+package com.flowfood.products.service
 
 import com.flowfood.exception.ResourceNotFoundException
-import com.flowfood.product.dto.ProductRequestDTO
-import com.flowfood.product.dto.ProductResponseDTO
-import com.flowfood.product.entity.Product
-import com.flowfood.product.repository.ProductRepository
+import com.flowfood.products.dto.ProductRequestDTO
+import com.flowfood.products.dto.ProductResponseDTO
+import com.flowfood.products.entity.Product
+import com.flowfood.products.repository.ProductRepository
 import com.flowfood.restaurant.repository.RestaurantRepository
 import org.springframework.stereotype.Service
 import org.springframework.data.domain.Page

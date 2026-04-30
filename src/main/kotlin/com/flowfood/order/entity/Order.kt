@@ -1,6 +1,6 @@
 package com.flowfood.order.entity
 
-import com.flowfood.product.entity.Product
+import com.flowfood.products.entity.Product
 import jakarta.persistence.*
 import java.time.LocalDateTime
 

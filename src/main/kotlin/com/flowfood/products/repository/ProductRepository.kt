@@ -1,6 +1,6 @@
-package com.flowfood.product.repository
+package com.flowfood.products.repository
 
-import com.flowfood.product.entity.Product
+import com.flowfood.products.entity.Product
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.Pageable
 import org.springframework.data.jpa.repository.JpaRepository

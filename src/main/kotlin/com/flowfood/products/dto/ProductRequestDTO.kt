@@ -1,4 +1,4 @@
-package com.flowfood.product.dto
+package com.flowfood.products.dto
 
 import jakarta.validation.constraints.DecimalMin
 import jakarta.validation.constraints.NotBlank

@@ -1,4 +1,4 @@
-package com.flowfood.product.entity
+package com.flowfood.products.entity
 
 import com.flowfood.restaurant.entity.Restaurant
 import jakarta.persistence.Entity

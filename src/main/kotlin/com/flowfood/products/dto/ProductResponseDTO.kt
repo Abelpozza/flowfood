@@ -1,4 +1,4 @@
-package com.flowfood.product.dto
+package com.flowfood.products.dto
 
 
 data class ProductResponseDTO(

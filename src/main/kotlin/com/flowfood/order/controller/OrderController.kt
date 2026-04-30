@@ -4,6 +4,7 @@ package com.flowfood.order.controller
 import com.flowfood.order.entity.OrderRequestDTO
 import com.flowfood.order.entity.OrderResponseDTO
 import com.flowfood.order.entity.OrderService
+import com.flowfood.order.entity.OrderStatus
 import jakarta.validation.Valid
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.*
@@ -29,4 +30,12 @@ class OrderController(
     fun findById(@PathVariable id: Long): OrderResponseDTO {
         return orderService.findById(id)
     }
+    @PatchMapping("/{id}/status")
+    fun updateStatus(
+        @PathVariable id: Long,
+        @RequestParam status: OrderStatus
+    ): OrderResponseDTO {
+        return orderService.updateStatus(id,status)
+    }
+
 }

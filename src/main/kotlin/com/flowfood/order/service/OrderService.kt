@@ -1,7 +1,7 @@
 package com.flowfood.order.entity
 
 import com.flowfood.exception.ResourceNotFoundException
-import com.flowfood.product.repository.ProductRepository
+import com.flowfood.products.repository.ProductRepository
 import org.springframework.stereotype.Service
 
 @Service
@@ -45,5 +45,15 @@ class OrderService(
             createdAt = order.createdAt,
             productIds = order.products.map { it.id!! }
         )
+    }
+    fun updateStatus(id: Long, status: OrderStatus): OrderResponseDTO {
+        val order = orderRepository.findById(id)
+            .orElseThrow {
+                ResourceNotFoundException("Pedido não encontrado com id: $id")
+            }
+        validateStatusTransition(order.status, status)
+        val updatedOrder = order.copy(status = status)
+        val saved = orderRepository.save(updatedOrder)
+        return toResponse(saved)
     }
 }

@@ -1,6 +1,6 @@
 package com.flowfood.restaurant.entity
 
-import com.flowfood.product.entity.Product
+import com.flowfood.products.entity.Product
 import jakarta.persistence.Column
 import jakarta.persistence.Entity
 import jakarta.persistence.GeneratedValue

@@ -1,8 +1,8 @@
-package com.flowfood.product.controller
+package com.flowfood.products.controller
 
-import com.flowfood.product.dto.ProductRequestDTO
-import com.flowfood.product.dto.ProductResponseDTO
-import com.flowfood.product.service.ProductService
+import com.flowfood.products.dto.ProductRequestDTO
+import com.flowfood.products.dto.ProductResponseDTO
+import com.flowfood.products.service.ProductService
 import jakarta.validation.Valid
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.*
