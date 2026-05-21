@@ -1,8 +1,10 @@
 package com.flowfood.order.entity
 
-enum class OrderStatus{
+public enum class OrderStatus{
     CREATED,
     CONFIRMED,
+    PAID,
     DELIVERED,
-    CANCELED
+    CANCELLED
+
 }

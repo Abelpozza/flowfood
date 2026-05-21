@@ -46,6 +46,23 @@ class OrderService(
             productIds = order.products.map { it.id!! }
         )
     }
+    private fun validateStatusTransition(
+        currentStatus: OrderStatus,
+        newStatus: OrderStatus
+    ) {
+        if (currentStatus == OrderStatus.CANCELLED) {
+            throw IllegalStateException("Pedido cancelado não pode ser alterado")
+        }
+
+        if (currentStatus == OrderStatus.DELIVERED) {
+            throw IllegalStateException("Pedido já entregue não pode ser alterado")
+        }
+
+        if (currentStatus == newStatus) {
+            throw IllegalArgumentException("Pedido já está com status $newStatus")
+        }
+    }
+
     fun updateStatus(id: Long, status: OrderStatus): OrderResponseDTO {
         val order = orderRepository.findById(id)
             .orElseThrow {
